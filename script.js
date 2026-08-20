@@ -5,16 +5,15 @@
 
   const DEFAULT_DATA = {
     hero:{
-      eyebrow:"ALGORITHMIC TRADING, CHARTED LIKE THE COSMOS",
       headline:"Harvest to the Moon",
-      sub:"สถาบันสอนเทรดที่มุ่งพัฒนาผู้เรียนตั้งแต่ระดับพื้นฐาน จนสามารถทำกำไรได้อย่างมั่นคงด้วยตนเอง ผ่านแนวทางการเทรดที่เน้น ความเข้าใจ ไม่ใช่แค่ท่องจำ พร้อมการวางแผนและควบคุมความเสี่ยงอย่างเป็นระบบ\n\nเราให้ความสำคัญกับ Mindset ที่ถูกต้อง เพื่อการอยู่รอดในตลาดอย่างยั่งยืน พร้อมโค้ชที่ดูแลแบบใกล้ชิด ให้คำปรึกษารายบุคคล ปรับแผนเทรดให้เหมาะกับแต่ละคน และยินดีสอนซ้ำจนกว่าจะเห็นพัฒนาการจริง\n\nHarvest to the Moon ไม่ใช่แค่สอนให้เทรดได้ แต่พาให้\n\nเทรดเป็น อยู่รอด และเติบโตได้",
+      sub:"สถาบันสอนเทรดที่มุ่งพัฒนาผู้เรียนตั้งแต่ระดับพื้นฐาน จนสามารถทำกำไรได้อย่างมั่นคงด้วยตนเอง ผ่านแนวทางการเทรดที่เน้น ความเข้าใจ ไม่ใช่แค่ท่องจำ พร้อมการวางแผนและควบคุมความเสี่ยงอย่างเป็นระบบ เราให้ความสำคัญกับ Mindset ที่ถูกต้อง เพื่อการอยู่รอดในตลาดอย่างยั่งยืน พร้อมโค้ชที่ดูแลแบบใกล้ชิด ให้คำปรึกษารายบุคคล ปรับแผนเทรดให้เหมาะกับแต่ละคน และยินดีสอนซ้ำจนกว่าจะเห็นพัฒนาการจริง Harvest to the Moon ไม่ใช่แค่สอนให้เทรดได้แต่พาให้เทรดเป็นอยู่รอดและเติบโตได้",
       cta1:"Explore Tools & EAs",
       cta2:"Join the Academy"
     },
     slides:[
-      {id:"s1",title:"Live EA Performance Dashboards",caption:"Track drawdown, win rate, and equity curves for every Expert Advisor in real time.",hue:230,image:""},
-      {id:"s2",title:"Weekly Live Trading Sessions",caption:"Sit in on real market breakdowns with our senior mentors, every week.",hue:265,image:""},
-      {id:"s3",title:"Custom Indicator Suite",caption:"Proprietary indicators built for MT4/MT5, tuned for trend and volatility regimes.",hue:200,image:""}
+      {id:"s1",title:"Harvest to the Moon — กลยุทธ์ที่ดี เริ่มจากแผนที่คุณเข้าใจ",hue:230,image:"Element/Harvest_to_the_moonAsset_3.webp"},
+      {id:"s2",title:"เรียนให้ลึก รู้ให้จริง — เทรดอย่างฉลาดไม่ใช่แค่ดูกราฟเก่ง",hue:265,image:"Element/home_-harvest_to_the_moon-02_1.webp"},
+      {id:"s3",title:"เราติดตามผล เพื่อให้ผู้เรียนสร้างระบบเทรดของตัวเอง",hue:200,image:"Element/home_-harvest_to_the_moon-03.webp"}
     ],
     tools:[
       {id:"t1",name:"Orion Trend EA",category:"Expert Advisor",description:"Fully automated trend-following EA with adaptive risk sizing and news filter.",price:"$249",hue:235,image:""},
@@ -81,7 +80,6 @@
 
   // ---------- render: public site ----------
   function renderHero(){
-    document.getElementById('heroEyebrow').textContent = data.hero.eyebrow;
     document.getElementById('heroHeadline').textContent = data.hero.headline;
     document.getElementById('heroSub').textContent = data.hero.sub;
     document.getElementById('heroCtaPrimary').textContent = data.hero.cta1;
@@ -97,8 +95,7 @@
     data.slides.forEach((s, i)=>{
       const div = document.createElement('div');
       div.className = 'slide' + (i===0?' active':'');
-      div.style.backgroundImage = `url('${imgFor(s)}')`;
-      div.innerHTML = `<div class="slide-content"><h3>${esc(s.title)}</h3><p>${esc(s.caption)}</p></div>`;
+      div.innerHTML = `<img src="${imgFor(s)}" alt="${esc(s.title)}" loading="${i===0?'eager':'lazy'}">`;
       el.insertBefore(div, el.querySelector('.slide-nav'));
       const dot = document.createElement('button');
       dot.className = 'dot' + (i===0?' active':'');
@@ -236,7 +233,6 @@
 
   // ---------- admin: populate forms ----------
   function populateAdminForms(){
-    document.getElementById('f-hero-eyebrow').value = data.hero.eyebrow;
     document.getElementById('f-hero-headline').value = data.hero.headline;
     document.getElementById('f-hero-sub').value = data.hero.sub;
     document.getElementById('f-hero-cta1').value = data.hero.cta1;
@@ -249,7 +245,6 @@
   }
 
   document.getElementById('saveHero').addEventListener('click', async ()=>{
-    data.hero.eyebrow = document.getElementById('f-hero-eyebrow').value.trim();
     data.hero.headline = document.getElementById('f-hero-headline').value.trim();
     data.hero.sub = document.getElementById('f-hero-sub').value.trim();
     data.hero.cta1 = document.getElementById('f-hero-cta1').value.trim();
@@ -265,8 +260,7 @@
     list.innerHTML = data.slides.map((s,i) => `
       <div class="admin-item" data-id="${s.id}">
         <button class="admin-item-remove" data-remove="slides" data-id="${s.id}">Remove</button>
-        <div class="field-row"><label>Title</label><input data-field="title" data-id="${s.id}" data-group="slides" value="${esc(s.title)}"></div>
-        <div class="field-row"><label>Caption</label><textarea data-field="caption" data-id="${s.id}" data-group="slides">${esc(s.caption)}</textarea></div>
+        <div class="field-row"><label>Description (alt text)</label><input data-field="title" data-id="${s.id}" data-group="slides" value="${esc(s.title)}" placeholder="Describes the image for screen readers — not shown on the page"></div>
         <div class="field-row"><label>Image URL</label><input data-field="image" data-id="${s.id}" data-group="slides" value="${esc(s.image)}" placeholder="Leave blank for generated art"></div>
       </div>
     `).join('');
@@ -274,7 +268,7 @@
     bindRemoveButtons();
   }
   document.getElementById('addSlide').addEventListener('click', ()=>{
-    data.slides.push({id:uid(), title:'New Slide', caption:'Describe this slide.', hue: Math.floor(Math.random()*360), image:''});
+    data.slides.push({id:uid(), title:'New Slide', hue: Math.floor(Math.random()*360), image:''});
     renderSlidesEditor();
   });
   document.getElementById('saveSlides').addEventListener('click', async ()=>{

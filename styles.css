@@ -94,7 +94,7 @@
   .hamburger span{width:22px;height:2px;background:var(--text-hi);display:block;}
 
   /* ---------- hero ---------- */
-  .hero{padding:168px 0 90px;position:relative;overflow:hidden;}
+  .hero{padding:152px 0 56px;position:relative;overflow:hidden;}
   .hero .container{position:relative;z-index:1;}
 
   /* ---------- HUD framing: corner ticks + mission bar + watermark ---------- */
@@ -149,39 +149,48 @@
     box-shadow:0 20px 60px rgba(0,0,0,.45);
     position:relative;
   }
-  .chart-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
-  .chart-card-head .label{font-size:.78rem;color:var(--text-low);}
-  .chart-card-head .value{font-family:'JetBrains Mono',monospace;color:var(--cyan);font-size:1.05rem;font-weight:600;}
-  .chart-svg{width:100%;height:auto;display:block;}
-  .chart-path{
-    fill:none;stroke:url(#chartGrad);stroke-width:2.5;
-    stroke-dasharray:900;stroke-dashoffset:900;
-    animation:draw 2.4s ease-out forwards .3s;
+  .chart-card.logo-card{
+    display:flex;align-items:center;justify-content:center;
+    min-height:380px;padding:24px;
+    background:none;border:none;box-shadow:none;
   }
-  @keyframes draw{to{stroke-dashoffset:0;}}
-  .chart-dot{animation:pulse 2.2s ease-in-out infinite;}
-  @keyframes pulse{0%,100%{opacity:.5;r:3;}50%{opacity:1;r:4.5;}}
-  .chart-foot{display:flex;justify-content:space-between;padding:14px 2px 4px;font-size:.75rem;color:var(--text-low);font-family:'JetBrains Mono',monospace;border-top:1px solid var(--border);margin-top:8px;}
+  .hero-logo{
+    width:95%;max-width:460px;height:auto;
+    filter:
+      drop-shadow(0 0 18px rgba(123,143,255,.65))
+      drop-shadow(0 0 45px rgba(155,92,246,.5))
+      drop-shadow(0 0 90px rgba(34,211,238,.3));
+    animation:logoFloat 5s ease-in-out infinite;
+  }
+  @keyframes logoFloat{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
 
   /* ---------- section shell ---------- */
-  section{padding:96px 0;}
+  section{padding:56px 0;}
   .section-head{max-width:640px;margin:0 auto 52px;text-align:center;}
   .section-head .eyebrow{margin-bottom:16px;}
   .section-head h2{font-size:2.1rem;font-weight:800;margin-bottom:14px;letter-spacing:-.01em;}
   .section-head p{color:var(--text-mid);font-size:1rem;}
 
+  /* ---------- section divider + frame ---------- */
+  .section-divider{max-width:1180px;margin:0 auto 32px;padding:0 28px;}
+  .section-divider span{
+    display:block;height:1px;
+    background:linear-gradient(90deg, transparent, var(--border) 15%, var(--border) 85%, transparent);
+  }
+  .section-frame{
+    position:relative;
+    border:1px solid var(--border);border-radius:var(--radius);
+    padding:56px 40px;background:rgba(17,22,58,.9);
+  }
+  @media(max-width:640px){
+    .section-frame{padding:40px 20px;}
+  }
+
   /* ---------- slideshow ---------- */
   .slideshow{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--border);box-shadow:0 24px 70px rgba(0,0,0,.5);}
-  .slide{
-    display:none;position:relative;min-height:420px;
-    background-size:cover;background-position:center;
-    align-items:flex-end;
-  }
-  .slide.active{display:flex;}
-  .slide::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(6,8,24,.92) 5%,rgba(6,8,24,.15) 60%,transparent 100%);}
-  .slide-content{position:relative;z-index:2;padding:36px 40px;max-width:640px;}
-  .slide-content h3{font-size:1.5rem;font-weight:700;margin-bottom:8px;}
-  .slide-content p{color:var(--text-mid);font-size:.95rem;}
+  .slide{display:none;position:relative;}
+  .slide.active{display:block;}
+  .slide img{width:100%;height:auto;display:block;}
   .slide-nav{position:absolute;bottom:22px;right:32px;z-index:3;display:flex;gap:9px;}
   .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:.2s;border:none;}
   .dot.active{background:var(--cyan);box-shadow:0 0 10px var(--cyan);width:22px;border-radius:5px;}
@@ -255,7 +264,7 @@
   .cta-band p{color:var(--text-mid);margin-bottom:30px;}
 
   /* ---------- footer ---------- */
-  footer{border-top:1px solid var(--border);padding:56px 0 28px;margin-top:60px;}
+  footer{border-top:1px solid var(--border);padding:40px 0 28px;margin-top:32px;}
   .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;margin-bottom:40px;}
   .footer-brand p{color:var(--text-mid);font-size:.88rem;margin-top:14px;max-width:320px;}
   .footer-col h4{font-size:.85rem;margin-bottom:16px;color:var(--text-hi);}
